@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" onclick="notifySet()"  value="Notification">
+
+  <script>
+    function notifyMe() {
+      let notification = new Notification("Hellow World",{
+        tag: "SMt",
+        body: "Alseo smt"
+      })
+
+      console.log(notification)
+    }
+    
+    
+    
+    
+    function notifySet() {
+       if(!("Notification" in window)){
+         alert("Doesnat support")
+       }else if(Notification.permission == "granted")
+        {   console.log(5)
+          setTimeout(notifyMe, 5000   );}
+        else if(Notification.permission !== "denied"){
+          Notification.requestPermission(
+            function(permission) {
+              if(!('permission' in Notification)) {
+                Notification.permission = permission
+              }
+              if(permission === "granted") {
+                  console.log(10)
+                setTimeout(notifyMe, 10000)
+                
+              }
+            }
+          )
+        }
+    }
+  </script>
+</body>
+</html>
